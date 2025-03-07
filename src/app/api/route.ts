@@ -16,6 +16,17 @@ function get_secret(data: string): string[] {
 
   export async function POST(req: NextRequest) {
     const { data } = await req.json();
+
+    const header = await req.headers.get("x-api-key");
+
+
+    if(header !== process.env.KEY){
+      return new Response("Unauthorized", {
+        status: 401,
+        headers: { "content-type": "text/plain" },
+      });
+    };
+
     const secret = get_secret(data);
     return new Response(JSON.stringify(secret), {
       headers: { "content-type": "application/json" },
