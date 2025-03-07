@@ -1,5 +1,6 @@
 import { nuclei_regex } from "@/constants/constants";
 import { NextRequest } from "next/server";
+import { getKeys } from "@/lib/gemini-ai";
 
 function get_secret(data: string): string[] {
     const result: string[] = [];
@@ -28,7 +29,8 @@ function get_secret(data: string): string[] {
     };
 
     const secret = get_secret(data);
-    return new Response(JSON.stringify(secret), {
+    const response = await getKeys(secret);
+    return new Response(JSON.stringify(response), {
       headers: { "content-type": "application/json" },
     });
   }
