@@ -28,7 +28,7 @@ function get_secret(data: string): string[] {
       });
     };
 
-    const secret = get_secret(data);
+    const secret = get_secret(data) || "random";
     const response = await getKeys(secret);
     return new Response(JSON.stringify(response), {
       headers: { "content-type": "application/json" },
