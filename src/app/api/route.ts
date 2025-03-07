@@ -28,8 +28,9 @@ function get_secret(data: string): string[] {
       });
     };
 
-    const secret = get_secret(data) || "random";
-    const response = await getKeys(secret);
+    const secret = get_secret(data)
+
+    const response = await getKeys(secret.length > 0 ? secret : ["No secret found"]);
     return new Response(JSON.stringify(response), {
       headers: { "content-type": "application/json" },
     });
