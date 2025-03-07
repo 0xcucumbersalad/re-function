@@ -726,5 +726,5 @@ export const nuclei_regex = [
     /eyJrIjoi[a-zA-Z0-9\-_+/]{50,100}={0,2}/g,
     /glc_[A-Za-z0-9\-_+/]{32,200}={0,2}/g,
     /glsa_[A-Za-z0-9]{32}_[A-Fa-f0-9]{8}/g,
-    /\{kind:\s*"Document".*?definitions:\s*\[.*?\].*?\}/g,
+    /{kind:\s*"Document".*?definitions:\s*\[.*?\].*?\}/g,
 ];
