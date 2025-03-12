@@ -18,7 +18,9 @@ function get_secret(data: string): string[] {
   export async function POST(req: NextRequest) {
     const { data } = await req.json();
 
-    const header = await req.headers.get("x-api-key");
+    console.log(data);
+
+    const header = req.headers.get("x-api-key");
 
 
     if(header !== process.env.KEY){
@@ -31,7 +33,7 @@ function get_secret(data: string): string[] {
     const secret = get_secret(data)
 
     const response = await getKeys(secret.length > 0 ? secret : ["No secret found"]);
-    return new Response(JSON.stringify(response), {
+    return new Response(JSON.stringify({response, eventId: data.eventId}), {
       headers: { "content-type": "application/json" },
     });
   }
